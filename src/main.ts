@@ -3,7 +3,15 @@ import { makeButton } from "./button";
 import { makeMonster, Monster } from "./monster";
 import { k } from "./shared";
 
-k.loadRoot("./");
+declare global {
+  interface ImportMeta {
+    env: {
+      DEV: boolean;
+    };
+  }
+}
+
+k.loadRoot(import.meta.env.DEV ? "./" : "https://dckt.github.io/kashoot/");
 initAssets();
 
 enum Scene {
